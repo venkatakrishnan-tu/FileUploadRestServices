@@ -1,0 +1,95 @@
+<html ng-app="archive">
+<head>
+<meta charset="utf8" />
+<title>File Upload REST Service</title>
+
+</head>
+<style>
+#table-6 {
+	width: 100%;
+	border: 1px solid #B0B0B0;
+}
+
+#table-6 tbody {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+#table-6 thead {
+	text-align: left;
+}
+
+#table-6 thead th {
+	background: -moz-linear-gradient(top, #F0F0F0 0, #DBDBDB 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F0F0),color-stop(100%, #DBDBDB));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F0F0',endColorstr='#DBDBDB', GradientType=0);
+	border: 1px solid #B0B0B0;
+	color: rgba(101, 96, 116, 0.8);
+	font-size: 16px;
+	font-weight: bold;
+	padding: 3px 10px;
+	border-bottom: 1px solid #B0B0B0;
+}
+
+</style>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1>Uploaded Files</h1>
+		</div>
+	 
+		<table id="table-6">
+			<thead>
+    			<tr>
+    				<th>File</th>
+    				<th>Person</th>
+    				<th>Date</th>
+    			</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="metadata in metadataList">
+					<td><a href="/rest/file/{{metadata.uuid}}">{{metadata.fileName}}</a></td>
+					<td><a href="/rest/file//{{metadata.uuid}}">{{metadata.authorName}}</a></td>
+					<td><a href="/rest/file//{{metadata.uuid}}">{{metadata.uploadDate | date:'mm-dd-yyyy'}}</a></td>
+				</tr>
+			</tbody>		
+		</table>
+		
+		</div>
+		<div id="sidebar" ng-controller="UploadCtrl">
+			<h2>Upload</h2>
+			<table class="table">
+				<tr>
+					<td>Name</td>
+				</tr>
+				<tr>
+					<td><input type="text" ng-model="name"></td>
+				</tr>
+				<tr>
+					<td>Date (MM-DD-YYYY)</td>
+				</tr>
+				<tr>
+					<td><input type="text" ng-model="date"></td>
+				</tr>
+				<tr>
+					<td><input type="file"  file-model="myFile"></td>
+					
+				</tr>
+				<tr>
+					<td><button ng-click="uploadFile()">Upload</button></td>
+				</tr>
+			</table>
+		</div>
+		<div id="footer">
+			<p>Footer</p>
+		</div>
+	</div>
+	<script src="lib/angular/angular-1.2.16.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
